@@ -3,3 +3,10 @@ http://ionicframework.com/docs/theming/ */
 :root {
   --ion-font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
 }
+ion-fab-button {
+  --color: #fff;
+}
+ion-fab {
+  margin-top: var(--ion-safe-area-top, 0);
+  padding: 10px;
+}

@@ -6,6 +6,12 @@
       </ion-toolbar>
     </ion-header>
 
+    <ion-fab vertical="bottom" horizontal="end" class="ion-padding">
+      <ion-fab-button @click="seeApps">
+        <ion-icon :icon="gridOutline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
     <ion-content :fullscreen="true"> </ion-content>
   </ion-page>
 </template>
@@ -17,7 +23,16 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonFab,
+  IonFabButton,
+  IonIcon,
 } from "@ionic/vue";
+import {} from "ionicons/dist/types/components/icon/icon";
+import { qrCodeOutline, gridOutline } from "ionicons/icons";
+
+const seeApps = () => {
+  alert("Opps apps");
+};
 </script>
 
 <style scoped>
