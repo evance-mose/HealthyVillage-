@@ -7,10 +7,21 @@
     </ion-header>
 
     <ion-fab vertical="bottom" horizontal="end" class="ion-padding">
-      <ion-fab-button @click="seeApps">
+      <ion-fab-button @click="openModal">
         <ion-icon :icon="gridOutline"></ion-icon>
       </ion-fab-button>
     </ion-fab>
+
+    <ion-modal
+      :is-open="showModal"
+      @did-dismiss="closeModal"
+      class="transparent-modal"
+    >
+      <ion-content>
+        <ion-item button @click="showHouseholds">Households</ion-item>
+        <ion-item button @click="showEncounters">Encounters/Visits</ion-item>
+      </ion-content>
+    </ion-modal>
 
     <ion-content :fullscreen="true"> </ion-content>
   </ion-page>
@@ -26,41 +37,45 @@ import {
   IonFab,
   IonFabButton,
   IonIcon,
+  IonModal,
+  IonItem,
 } from "@ionic/vue";
 import {} from "ionicons/dist/types/components/icon/icon";
-import { qrCodeOutline, gridOutline } from "ionicons/icons";
+import { gridOutline } from "ionicons/icons";
+import { ref } from "vue";
 
-const seeApps = () => {
-  alert("Opps apps");
+const showModal = ref<boolean>(false);
+
+function openModal(): void {
+  showModal.value = true;
+}
+
+function closeModal(): void {
+  showModal.value = true;
+}
+
+const showEncounters = () => {
+  alert("Show Encounters/Visits");
+};
+
+const showHouseholds = () => {
+  alert("Show households");
 };
 </script>
 
 <style scoped>
-#container {
-  text-align: center;
+.transparent-modal .modal-wrapper {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+}
 
+.transparent-modal-content {
+  background: #fff;
+  border-radius: 16px 16px 0 0;
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+  bottom: 0;
+  width: 100%;
+  min-height: 200px;
+  padding: 16px;
 }
 </style>

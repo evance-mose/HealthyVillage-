@@ -10,3 +10,18 @@ ion-fab {
   margin-top: var(--ion-safe-area-top, 0);
   padding: 10px;
 }
+
+.transparent-modal .modal-wrapper {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+}
+
+.transparent-modal-content {
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 200px;
+  padding: 16px;
+}
