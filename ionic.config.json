@@ -1,0 +1,7 @@
+{
+  "name": "HealthyVillage",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
