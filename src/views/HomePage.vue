@@ -23,7 +23,23 @@
       </ion-content>
     </ion-modal>
 
-    <ion-content :fullscreen="true"> </ion-content>
+    <ion-content :fullscreen="true" class="ion-padding">
+      <ion-item
+        button
+        v-for="(value, index) in households"
+        :key="index"
+        class="list-padding"
+      >
+        <div class="list-household">
+          <div>
+            {{ value.resource.name }}
+          </div>
+          <div>
+            {{ value.resource.description }}
+          </div>
+        </div>
+      </ion-item>
+    </ion-content>
   </ion-page>
 </template>
 
@@ -42,7 +58,15 @@ import {
 } from "@ionic/vue";
 import {} from "ionicons/dist/types/components/icon/icon";
 import { gridOutline } from "ionicons/icons";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { getResources } from "../utils/functions";
+import { HouseHold } from "@/utils/types";
+
+let households = ref<null>(null);
+
+onMounted(async () => {
+  households.value = await getResources("Location");
+});
 
 const showModal = ref<boolean>(false);
 
@@ -77,5 +101,17 @@ const showHouseholds = () => {
   width: 100%;
   min-height: 200px;
   padding: 16px;
+}
+
+.list-household {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 10px;
+  padding: 8px;
+}
+.list-padding {
+  padding-bottom: 5px;
 }
 </style>
