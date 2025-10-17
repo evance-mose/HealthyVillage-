@@ -24,21 +24,23 @@
     </ion-modal>
 
     <ion-content :fullscreen="true" class="ion-padding">
-      <ion-item
+      <div
         button
         v-for="(value, index) in households"
         :key="index"
         class="list-padding"
       >
-        <div class="list-household">
-          <div>
-            {{ value.resource.name }}
+        <ion-item @click="showHouseholds(value.resource.id)">
+          <div class="list-household">
+            <div>
+              {{ value.resource.name }}
+            </div>
+            <div>
+              {{ value.resource.description }}
+            </div>
           </div>
-          <div>
-            {{ value.resource.description }}
-          </div>
-        </div>
-      </ion-item>
+        </ion-item>
+      </div>
     </ion-content>
   </ion-page>
 </template>
@@ -61,6 +63,9 @@ import { gridOutline } from "ionicons/icons";
 import { onMounted, ref } from "vue";
 import { getResources } from "../utils/functions";
 import { HouseHold } from "@/utils/types";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 let households = ref<null>(null);
 
@@ -82,8 +87,8 @@ const showEncounters = () => {
   alert("Show Encounters/Visits");
 };
 
-const showHouseholds = () => {
-  alert("Show households");
+const showHouseholds = (id: string) => {
+  router.push({ name: "HouseHoldDetails", params: { id } });
 };
 </script>
 
@@ -104,6 +109,7 @@ const showHouseholds = () => {
 }
 
 .list-household {
+  color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: start;
