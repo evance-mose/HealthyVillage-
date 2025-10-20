@@ -19,6 +19,7 @@
   </IonPage>
 </template>
 <script lang="ts" setup>
+import { getResourcesByID } from "@/utils/functions";
 import {
   IonContent,
   IonHeader,
@@ -34,9 +35,14 @@ import {
   IonBackButton,
 } from "@ionic/vue";
 import { arrowBackOutline } from "ionicons/icons";
+import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 const router = useRoute();
 const id = router.params.id;
+
+onMounted(() => {
+  console.log(getResourcesByID(id));
+});
 </script>
 
 <style setup>

@@ -5,3 +5,7 @@ export const getResources = (typeOfResource: string) => {
     (res) => res.resource["resourceType"] == typeOfResource
   );
 };
+
+export const getResourcesByID = (id: string) => {
+  return data.entry.find((res) => res.resource.id === id);
+};
