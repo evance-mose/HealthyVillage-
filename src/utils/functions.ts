@@ -6,6 +6,21 @@ export const getResources = (typeOfResource: string) => {
   );
 };
 
-export const getResourcesByID = (id: string) => {
-  return data.entry.find((res) => res.resource.id === id);
+const getPatientByHouseHold = (locationId: string) => {
+  return data?.entry?.find(
+    (res) =>
+      res.resource?.managingOrganization?.reference === `Location/${locationId}`
+  );
+};
+
+export const getHouseholdByID = (id: string) => {
+  const location = data?.entry?.find(
+    (res) => res.resource?.id === id
+  )?.resource;
+  const patient = getPatientByHouseHold(id)?.resource;
+
+  return {
+    location,
+    patient,
+  };
 };

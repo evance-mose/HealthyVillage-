@@ -14,12 +14,14 @@
       </IonToolbar>
     </IonHeader>
     <IonContent class="ion-padding">
-      <p>ID: {{ id }}</p>
+      <h1>{{ household?.name }}</h1>
+      <h4>{{ household?.description }}</h4>
     </IonContent>
   </IonPage>
 </template>
 <script lang="ts" setup>
-import { getResourcesByID } from "@/utils/functions";
+import { getHouseholdByID } from "@/utils/functions";
+import { HouseHold } from "@/utils/types";
 import {
   IonContent,
   IonHeader,
@@ -35,13 +37,14 @@ import {
   IonBackButton,
 } from "@ionic/vue";
 import { arrowBackOutline } from "ionicons/icons";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 const router = useRoute();
 const id = router.params.id;
+const household = ref();
 
 onMounted(() => {
-  console.log(getResourcesByID(id));
+  console.log(getHouseholdByID(id));
 });
 </script>
 
